@@ -24,7 +24,7 @@ jobs:
 
 
       - name: Bundle Install
-        run: bundle update && bundle install
+        run:  bundle install
 
       - name: Upload Testflight
         run: bundle exec fastlane beta
