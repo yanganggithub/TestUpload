@@ -57,7 +57,7 @@ platform :ios do
     build_app(
       export_method: "app-store",
       scheme: "TestUpload",
-      project: "TestUpload")
+      project: "TestUpload.xcodeproj")
     upload_to_testflight(api_key: api_key1)
   end
 end
