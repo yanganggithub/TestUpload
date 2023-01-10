@@ -28,6 +28,8 @@ platform :ios do
   end
 
   lane :beta do
+    setup_ci
+    clear_derived_data
    api_key1 = app_store_connect_api_key(
       key_id: ENV["APP_STORE_CONNECT_API_KEY_KEY_ID"],
       issuer_id: ENV["APP_STORE_CONNECT_API_KEY_ISSUER_ID"],
@@ -35,8 +37,7 @@ platform :ios do
     )
     # add actions here: https://docs.fastlane.tools/actions
     match(api_key:api_key1,git_branch: "master", type: "appstore", app_identifier: ["com.yangang.rtmppush"])
-    setup_ci
-    clear_derived_data
+
 
     run_number = ENV["SH_run_number"]
     puts "------====== ==== ffffff"
