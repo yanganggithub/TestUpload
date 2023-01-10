@@ -56,7 +56,8 @@ platform :ios do
     # build_app(workspace: "MusicDemo.xcworkspace", scheme: "MusicDemo", export_method: "app-store")
     build_app(
       export_method: "app-store",
-      scheme: "TestUpload")
+      scheme: "TestUpload",
+      project: "TestUpload")
     upload_to_testflight(api_key: api_key1)
   end
 end
