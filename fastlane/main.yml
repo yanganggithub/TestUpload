@@ -1,0 +1,43 @@
+name: build-ios-app
+on:
+  label:
+    types:
+      - created
+  push:
+      branches:
+      - 'master'
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Select Xcode Version
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_KEY }}
+          name: id_rsa
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+
+
+      - name: Bundle Install
+        run: bundle update && bundle install
+
+      - name: Upload Testflight
+        run: bundle exec fastlane beta
+          # with:
+          #   action: ${{ github.action }}
+        
+        env:
+          SH_run_number: ${{ github.run_number }} # 当前run number 用来递增 build 号
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          # FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
+          # FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+          # FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
+          APP_STORE_CONNECT_API_KEY_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY_ID }}
+          APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID }}
+          APP_STORE_CONNECT_API_KEY_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY}}
+          # INPUT_TICKETS: ${{ github.event.inputs.tickets }}
