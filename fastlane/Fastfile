@@ -26,8 +26,49 @@ platform :ios do
     #   version_number: "#{options[:current_version]}" # Set a specific version number
     # )
   end
+  
+    lane :beta do
+    ENV['APP_STORE_CONNECT_API_KEY_KEY_ID'] = "S9365RNYUW"
+    ENV['APP_STORE_CONNECT_API_KEY_ISSUER_ID'] = "59993ff3-b6d9-44ee-826b-3edf31b9b6cf"
+    ENV['APP_STORE_CONNECT_API_KEY_KEY'] = "-----BEGIN PRIVATE KEY-----\nMIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQgfWL7By1jI1rZHQ6J
+JsLElMAaWfbQkE4ZlF3eRiX04yygCgYIKoZIzj0DAQehRANCAATPk9qWWAgaKTII
+K5NLvzt/Vy3ZvKUt3UMKGYCUGzWNN4YxfKtPeDlKGgntA/V7b30h1Geqel482Lci
+Yni4MWJ/\n-----END PRIVATE KEY-----"
+    setup_ci
+    clear_derived_data
+   api_key1 = app_store_connect_api_key(
+      key_id: ENV["APP_STORE_CONNECT_API_KEY_KEY_ID"],
+      issuer_id: ENV["APP_STORE_CONNECT_API_KEY_ISSUER_ID"],
+      key_content: ENV["APP_STORE_CONNECT_API_KEY_KEY"]
+    )
+    # add actions here: https://docs.fastlane.tools/actions
+    match(api_key:api_key1,git_branch: "master", type: "appstore", app_identifier: ["com.yangang.rtmppush"])
 
-  lane :beta do
+
+    run_number = ENV["SH_run_number"]
+    puts "------====== ==== ffffff"
+    version = get_version_number(
+      target: "TestUpload",
+      configuration: "Release"
+    )
+    buildNumber = get_build_number.to_i
+    test_bumber = run_number.to_i
+    buildNumber = test_bumber + buildNumber
+    puts "------====== ====1 test_bumber #{test_bumber} buildNumber--#{buildNumber} -- #{version}"
+
+    updateVersionings(
+       run_number: buildNumber,
+       current_version: version
+    )
+    # build_app(workspace: "MusicDemo.xcworkspace", scheme: "MusicDemo", export_method: "app-store")
+   build_app(
+      export_method: "app-store",
+      workspace: "TestUpload.xcworkspace",
+      scheme: "TestUpload")
+    upload_to_testflight(api_key: api_key1,skip_submission: true)
+  end
+
+  lane :beta_testflight do
     setup_ci
     clear_derived_data
    api_key1 = app_store_connect_api_key(
@@ -57,8 +98,8 @@ platform :ios do
     # build_app(workspace: "MusicDemo.xcworkspace", scheme: "MusicDemo", export_method: "app-store")
     build_app(
       export_method: "app-store",
-      scheme: "TestUpload",
-      project: "TestUpload.xcodeproj")
+      workspace: "TestUpload.xcworkspace",
+      scheme: "TestUpload")
     upload_to_testflight(api_key: api_key1,skip_submission: true)
   end
 end

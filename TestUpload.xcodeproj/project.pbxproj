@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12A02B2FFBCEA0FA7518458A /* Pods_TestUpload.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 015508A149672156C9967E86 /* Pods_TestUpload.framework */; };
 		A1E466972967B7F200148565 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E466962967B7F200148565 /* AppDelegate.swift */; };
 		A1E4669B2967B7F200148565 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E4669A2967B7F200148565 /* ViewController.swift */; };
 		A1E466A02967B7F300148565 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1E4669F2967B7F300148565 /* Assets.xcassets */; };
@@ -16,6 +17,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		015508A149672156C9967E86 /* Pods_TestUpload.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestUpload.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CF690B8C24CA33603FEAAB0 /* Pods-TestUpload.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestUpload.debug.xcconfig"; path = "Target Support Files/Pods-TestUpload/Pods-TestUpload.debug.xcconfig"; sourceTree = "<group>"; };
+		90432DF07BBB2B9B89D01243 /* Pods-TestUpload.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestUpload.release.xcconfig"; path = "Target Support Files/Pods-TestUpload/Pods-TestUpload.release.xcconfig"; sourceTree = "<group>"; };
 		A1E466932967B7F200148565 /* TestUpload.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestUpload.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1E466962967B7F200148565 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1E4669A2967B7F200148565 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -31,17 +35,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12A02B2FFBCEA0FA7518458A /* Pods_TestUpload.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		043C512266F63B2ECD5798CB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				015508A149672156C9967E86 /* Pods_TestUpload.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A1E4668A2967B7F200148565 = {
 			isa = PBXGroup;
 			children = (
 				A1E466952967B7F200148565 /* TestUpload */,
 				A1E466942967B7F200148565 /* Products */,
+				E6AFDCDB16CE734D310EA3C1 /* Pods */,
+				043C512266F63B2ECD5798CB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +82,15 @@
 			path = TestUpload;
 			sourceTree = "<group>";
 		};
+		E6AFDCDB16CE734D310EA3C1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8CF690B8C24CA33603FEAAB0 /* Pods-TestUpload.debug.xcconfig */,
+				90432DF07BBB2B9B89D01243 /* Pods-TestUpload.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +98,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A1E466A72967B7F300148565 /* Build configuration list for PBXNativeTarget "TestUpload" */;
 			buildPhases = (
+				A1B0751AE8B5ECE3B4735C09 /* [CP] Check Pods Manifest.lock */,
 				A1E4668F2967B7F200148565 /* Sources */,
 				A1E466902967B7F200148565 /* Frameworks */,
 				A1E466912967B7F200148565 /* Resources */,
+				AE74A11F89842857CB379664 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,6 +158,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A1B0751AE8B5ECE3B4735C09 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TestUpload-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AE74A11F89842857CB379664 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TestUpload/Pods-TestUpload-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TestUpload/Pods-TestUpload-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TestUpload/Pods-TestUpload-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A1E4668F2967B7F200148565 /* Sources */ = {
@@ -274,12 +342,14 @@
 		};
 		A1E466A82967B7F300148565 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8CF690B8C24CA33603FEAAB0 /* Pods-TestUpload.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 103;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = CDG3G5A3AX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TestUpload/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -306,6 +376,7 @@
 		};
 		A1E466A92967B7F300148565 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 90432DF07BBB2B9B89D01243 /* Pods-TestUpload.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

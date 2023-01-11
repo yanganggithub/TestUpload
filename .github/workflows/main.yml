@@ -27,7 +27,7 @@ jobs:
         run:  bundle install
 
       - name: Upload Testflight
-        run: bundle exec fastlane beta
+        run: bundle exec fastlane beta_testflight
           # with:
           #   action: ${{ github.action }}
         
